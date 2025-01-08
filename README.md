@@ -33,4 +33,5 @@ This project uses the Maven Wrapper, which enables users to build and run the pr
 ![image](https://github.com/user-attachments/assets/5827dab7-a64f-474d-9168-dec70f2b73b7)
 
 ## `Return edited Topics`
-![image](https://github.com/user-attachments/assets/3c82795c-f041-4f5e-9c2e-9aca48a4e0ad)
+![image](https://github.com/user-attachments/assets/c90556f8-a7cf-478d-bbdf-39f7975461ff)
+
