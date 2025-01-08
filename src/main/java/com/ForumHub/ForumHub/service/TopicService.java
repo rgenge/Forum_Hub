@@ -32,6 +32,8 @@ public class TopicService {
         Topic topic = topicRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Topic not found with id: " + id));
         topic.setTitle(topicDetails.getTitle());
         topic.setMessage(topicDetails.getMessage());
+        topic.setAuthor(topicDetails.getAuthor());
+        topic.setCourse(topicDetails.getCourse());
         return topicRepository.save(topic);
     }
 
