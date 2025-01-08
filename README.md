@@ -29,10 +29,6 @@ This project uses the Maven Wrapper, which enables users to build and run the pr
 ![image](https://github.com/user-attachments/assets/09d01641-499f-4aad-b65e-e97b65452b94)
 
 
-
-## `Getting topics by id`
-![3](https://github.com/user-attachments/assets/cefc9317-5114-4f63-9147-68249edae46d)
-
 ## `Editing Topics`
 ![image](https://github.com/user-attachments/assets/5827dab7-a64f-474d-9168-dec70f2b73b7)
 
