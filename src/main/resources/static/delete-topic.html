@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Topic</title>
+</head>
+<body>
+<h1>Delete Topic by ID</h1>
+<form id="deleteTopicForm">
+    <label for="deleteTopicId">Topic ID:</label><br>
+    <input type="text" id="deleteTopicId" name="deleteTopicId" required><br><br>
+    <input type="submit" value="Delete Topic">
+</form>
+
+<script>
+    document.getElementById('deleteTopicForm').addEventListener('submit', async function (event) {
+        event.preventDefault();
+
+        const topicId = document.getElementById('deleteTopicId').value;
+        const url = `http://localhost:8081/api/topics/${topicId}`;
+
+        try {
+            const response = await fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                alert('Topic deleted successfully!');
+            } else {
+                alert('Failed to delete topic.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error deleting topic.');
+        }
+    });
+</script>
+</body>
+</html>
+

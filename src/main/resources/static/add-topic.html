@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Form</title>
+</head>
+<body>
+<h1>Add a New Topic</h1>
+<form id="topicForm">
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title" required><br>
+    <label for="message">Message:</label><br>
+    <textarea id="message" name="message" required></textarea><br>
+    <label for="author">Author:</label><br>
+    <input type="text" id="author" name="author" required><br>
+    <label for="course">Course:</label><br>
+    <input type="text" id="course" name="course" required><br><br>
+    <input type="submit" value="Submit">
+</form>
+
+<script>
+    document.getElementById('topicForm').addEventListener('submit', async function (event) {
+        event.preventDefault();
+
+        const form = event.target;
+        const formData = new FormData(form);
+        const jsonObject = {};
+
+        formData.forEach((value, key) => {
+            jsonObject[key] = value;
+        });
+
+        try {
+            const response = await fetch('http://localhost:8081/api/topics', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonObject)
+            });
+
+            if (response.ok) {
+                alert('Topic added successfully!');
+            } else {
+                alert('Failed to add topic.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error adding topic.');
+        }
+    });
+</script>
+</body>
+</html>

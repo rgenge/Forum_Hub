@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Topic</title>
+</head>
+<body>
+<h1>Get Topic by ID</h1>
+<form id="getTopicForm">
+    <label for="topicId">Topic ID:</label><br>
+    <input type="text" id="topicId" name="topicId" required><br><br>
+    <input type="submit" value="Get Topic">
+</form>
+
+<div id="topicData"></div>
+
+<script>
+    document.getElementById('getTopicForm').addEventListener('submit', async function (event) {
+        event.preventDefault();
+
+        const topicId = document.getElementById('topicId').value;
+        const url = `http://localhost:8081/api/topics/${topicId}`;
+
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                document.getElementById('topicData').textContent = JSON.stringify(data, null, 2);
+            } else {
+                alert('Failed to retrieve topic.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error retrieving topic.');
+        }
+    });
+</script>
+</body>
+</html>
+

@@ -31,4 +31,26 @@ public class TopicController {
         return ResponseEntity.ok(topics);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Topic> getTopicById(@PathVariable Long id) {
+        Topic topic = topicService.getTopicById(id);
+        return ResponseEntity.ok(topic);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTopic(@PathVariable Long id) {
+        topicService.deleteTopic(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Topic> editTopic(@PathVariable Long id, @Valid @RequestBody Topic topicDetails) {
+        Topic updatedTopic = topicService.editTopic(id, topicDetails);
+        return ResponseEntity.ok(updatedTopic);
+    }
+
+    @GetMapping("/")
+    public String index() {
+        return "index";
+    }
 }
