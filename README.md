@@ -11,6 +11,10 @@ This project uses the Maven Wrapper, which enables users to build and run the pr
 
 ## How to use
 
+### Install MYSQL 8.0 and create a mysql database
+```sh
+Install MYSQL and create a user based on the application.properties. 
+```
 ### Compile
 ```sh
 ./mvnw clean compile
