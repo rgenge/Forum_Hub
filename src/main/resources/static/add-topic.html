@@ -31,19 +31,30 @@
             jsonObject[key] = value;
         });
 
+        // Retrieve JWT token from localStorage or sessionStorage
+        const jwtToken = localStorage.getItem('jwt'); // Adjust storage method if necessary
+
+        if (!jwtToken) {
+            alert('You must be logged in to add a topic.');
+            return;
+        }
+
         try {
             const response = await fetch('http://localhost:8081/api/topics', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${jwtToken}` // Include the JWT token in the Authorization header
                 },
                 body: JSON.stringify(jsonObject)
             });
 
             if (response.ok) {
                 alert('Topic added successfully!');
+                form.reset(); // Clear the form after successful submission
             } else {
-                alert('Failed to add topic.');
+                const errorData = await response.json();
+                alert(`Failed to add topic: ${errorData.message || response.statusText}`);
             }
         } catch (error) {
             console.error('Error:', error);
@@ -51,5 +62,6 @@
         }
     });
 </script>
+
 </body>
 </html>

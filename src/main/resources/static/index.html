@@ -3,14 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forum Hub</title>
+    <title>Index</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
-<h1>Welcome to Forum Hub</h1>
-<button onclick="location.href='/api/topics'">Get All Topics</button>
-<button onclick="location.href='/add-topic.html'">Add Topic</button>
-<button onclick="location.href='/get-topic.html'">Get Topic by ID</button>
-<button onclick="location.href='/delete-topic.html'">Delete Topic by ID</button>
-<button onclick="location.href='/edit-topic.html'">Edit Topic</button>
+<div class="container">
+    <h1>Welcome to Forum Hub</h1>
+    <button onclick="location.href='/add-topic.html'">Add Topic</button>
+    <button onclick="location.href='/get-topic.html'">Get Topic by ID</button>
+    <button onclick="location.href='/delete-topic.html'">Delete Topic by ID</button>
+    <button onclick="location.href='/edit-topic.html'">Edit Topic</button>
+    <button onclick="getAllTopics()">Get All Topics</button>
+    <div id="topicsList"></div>
+    <button onclick="logout()">Logout
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const jwt = localStorage.getItem('jwt');
+
+        if (!jwt) {
+            window.location.href = '/login.html';
+        }
+    });
+
+    async function logout() {
+        localStorage.removeItem('jwt');
+        alert('Logged out successfully!');
+        window.location.href = 'login.html';
+    }
+
+    async function getAllTopics() {
+        const jwt = localStorage.getItem('jwt');
+        const url = 'http://localhost:8081/api/topics';
+        const topicsListDiv = document.getElementById('topicsList');
+        if (!topicsListDiv) {
+            console.error('Element with id "topicsList" not found.');
+            return;
+        }
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${jwt}`}
+            });
+            if (response.ok) {
+                const topics = await response.json();
+                topicsListDiv.innerHTML = '';
+                topics.forEach(topic => {
+                    const topicItem = document.createElement('div');
+                    topicItem.textContent = JSON.stringify(topic, null, 2);
+                    topicsListDiv.appendChild(topicItem);
+                });
+            } else {
+                alert('Failed to fetch topics.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error fetching topics.');
+        }
+    }
+
+</script>
 </body>
 </html>
+

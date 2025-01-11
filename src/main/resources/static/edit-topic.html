@@ -25,7 +25,6 @@
 
     <input type="submit" value="Edit Topic">
 </form>
-
 <script>
     document.getElementById('editTopicForm').addEventListener('submit', async function (event) {
         event.preventDefault();
@@ -33,6 +32,7 @@
         const topicId = document.getElementById('topicId').value;
         const formData = new FormData(event.target);
         const jsonObject = {};
+        const jwtToken = localStorage.getItem('jwt');
 
         formData.forEach((value, key) => {
             jsonObject[key] = value;
@@ -44,7 +44,8 @@
             const response = await fetch(url, {
                 method: 'PUT',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${jwtToken}`
                 },
                 body: JSON.stringify(jsonObject)
             });
@@ -60,6 +61,7 @@
         }
     });
 </script>
+
 </body>
 </html>
 
