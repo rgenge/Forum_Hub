@@ -19,10 +19,15 @@ This project uses the Maven Wrapper, which enables users to build and run the pr
 ./mvnw exec:java
 ```
 ## `Initial login in using JWT`
-![image](https://github.com/user-attachments/assets/ff8a69f6-24ec-4d24-9d0f-83f2eaa13ee6)
+```sh
+First create one login in signup, after that you can log in.
+```
+![image](https://github.com/user-attachments/assets/e0a8348f-b319-44c7-8a00-a9c5e0af177c)
+
 
 ## `Initial Screen after loging in options of topics`
-![image](https://github.com/user-attachments/assets/ff8a69f6-24ec-4d24-9d0f-83f2eaa13ee6)
+![image](https://github.com/user-attachments/assets/e1e34297-2ac6-4a62-8683-0744ac74af71)
+
 
 
 ## `Adding topics`
