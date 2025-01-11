@@ -2,7 +2,8 @@
 
 ## About
 
-Basic ForumHun that saves your topics, return all topics, return selected topics, delete topics and edit topics.
+Basic ForumHub that saves your topics, return all topics, return selected topics, delete topics and edit topics.
+It will have at first a Login Validation using JWT and Spring Security to handle that.
 
 ## Specs
 This project uses the Maven Wrapper, which enables users to build and run the project without having Maven installed globally. All necessary Maven files are included in the repository.
